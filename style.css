@@ -1,5 +1,9 @@
 body {
     background:#FFF;
-    font-family:Futura, Arial, sans-serif;
+    font-family:Arial, sans-serif;
     color:#222;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family:Futura, Arial, sans-serif;
 }
