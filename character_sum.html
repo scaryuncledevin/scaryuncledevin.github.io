@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ScaryUncleDevin - Character Sum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="futura.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        h1 {
+            font-size: calc(5vw);
+            margin: .5em 0em;
+            text-align: center;
+        }
+
+        input#chars {
+            display: block;
+            margin: .5em auto;
+            width: 50%;
+        }
+
+        input#go {
+            display: block;
+            margin: .5em auto;
+            min-width: 10%;
+		}
+
+		table {
+			width: 50%;
+			margin: .5em auto;
+		}
+
+		table th, table td {
+			border: 1px solid #CCC;
+		}
+    </style>
+</head>
+
+<body>
+<h1>Character Sum</h1>
+<form onsubmit="convert(); return false;">
+	<input id="chars" type="text" placeholder="abc123">
+	<input id="go" type="submit" value="Convert">
+</form>
+
+<table cellpadding="5" cellspacing="0" width="100%" border="0">
+	<thead>
+		<tr>
+			<th>Input</th>
+			<th>Ouput</th>
+		</tr>
+	</thead>
+	<tbody id="output">
+	</tbody>
+</table>
+
+<script>
+	const converted = {};
+
+	function convert() {
+        const chars = document.getElementById('chars').value.trim();
+
+		if (chars.length === 0 || chars in converted) {
+			return;
+		}
+
+		const charCode = chars.split('').reduce((sum, char) => {
+			return sum + char.charCodeAt(0);
+		}, 0).toString().split('').map((char) => {
+			return char.charCodeAt(0);
+		}).join('');
+
+		converted[chars] = charCode;
+
+		const tdInput = document.createElement('td');
+		tdInput.innerHTML = chars;
+
+		const tdOuput = document.createElement('td');
+		tdOuput.innerHTML = charCode;
+
+		const trRow = document.createElement('tr');
+		trRow.appendChild(tdInput);
+		trRow.appendChild(tdOuput);
+
+		document.getElementById('output').appendChild(trRow);
+    }
+</script>
+
+</body>
+</html>
