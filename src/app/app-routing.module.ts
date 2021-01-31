@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'google-cache',
+    loadChildren: () => import('./pages/google-cache/google-cache.module').then( m => m.GoogleCachePageModule)
+  },
 ];
 
 @NgModule({
